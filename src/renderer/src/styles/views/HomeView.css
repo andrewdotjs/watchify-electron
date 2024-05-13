@@ -1,0 +1,14 @@
+.home-body {
+  --left-margin: 20px;
+  position: relative;
+  width: calc(100% - var(--left-margin));
+  height: 100vh;
+  padding-left: var(--left-margin);
+  overflow: hidden;
+}
+
+.home-content {
+  margin-top: 92px;
+  height: calc(100% - 92px);
+  overflow-y: scroll;
+}

@@ -1,0 +1,56 @@
+.series-redirect {
+  position: relative;
+  text-decoration: none;
+  width: fit-content;
+  height: auto;
+  display: block;
+}
+
+.series-cover {
+  overflow: hidden;
+  width: 200px;
+  aspect-ratio: 2/3;
+  border-radius: 10px;
+}
+
+.series-cover:hover .series-details {
+  display: block;
+}
+
+.series-image {
+  width: 100%;
+  object-fit: cover;
+}
+
+.series-details {
+  height: 50px;
+  width: 100%;
+  display: none;
+  background-image: linear-gradient(transparent, #000000aa, #000);
+  position: relative;
+  top: calc(-100% + 245px);
+  z-index: 5;
+  padding: 10px;
+}
+
+.series-title {
+  color: #fff;
+}
+
+.episode-blip {
+  position: absolute;
+  z-index: 10;
+  margin-left: 5px;
+  margin-top: 5px;
+  width: fit-content;
+  background-color: #079cf8;
+  opacity: 0.8;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 10px;
+}
+
+.series-episodes {
+  height: 10px;
+  width: fit-content;
+}

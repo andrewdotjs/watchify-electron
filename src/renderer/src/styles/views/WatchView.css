@@ -1,0 +1,65 @@
+.watchview-container {
+  width: 100%;
+  height: fit-content;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.video-player {
+  width: auto;
+  height: 800px;
+  background-color: #000000;
+}
+
+.video-title {
+  margin: 0;
+  padding: 0;
+}
+
+.video-description {
+  font-size: 16px;
+}
+
+.video-info {
+  display: flex;
+  flex-direction: column;
+  margin: 0 20px;
+  margin-top: 20px;
+}
+
+.video-quick-info {
+  display: flex;
+  flex-direction: row;
+}
+
+.video-navigation {
+  margin-left: auto;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.video-navigation-buttons {
+  width: fit-content;
+  height: fit-content;
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #fff;
+  background-color: #00a1ff;
+  transition: opacity 0.2s linear;
+}
+
+.video-navigation-buttons:hover {
+  opacity: 0.8;
+}
+
+.navigation-disabled {
+  cursor: not-allowed;
+  background-color: #999;
+}
+
+.navigation-disabled:hover {
+  opacity: 1;
+}

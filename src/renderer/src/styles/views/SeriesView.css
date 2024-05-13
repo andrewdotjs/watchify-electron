@@ -1,0 +1,64 @@
+.series-information-container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background-color: #00000088;
+  backdrop-filter: blur(3px);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.series-information {
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  width: 500px;
+}
+
+.series-episodes {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 250px;
+  height: 300px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  background-color: #808080;
+  border-radius: 10px;
+}
+
+.series-episode {
+  width: 100%;
+  text-align: center;
+  color: white;
+  padding: 3px 0px;
+  text-decoration: none;
+  transition: opacity 0.2s linear;
+}
+
+.series-episode:hover {
+  opacity: 0.8;
+}
+
+.series-episode:nth-of-type(2n + 1) {
+  background-color: #6c66cc;
+}
+
+.series-episode:nth-of-type(2n) {
+  background-color: #4740bf;
+}
+
+.series-view-cover {
+  overflow: hidden;
+  height: 300px;
+  aspect-ratio: 2/3;
+  border-radius: 10px;
+}

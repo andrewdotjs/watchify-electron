@@ -1,0 +1,42 @@
+/* BEGIN series splash */
+
+.series-splash-container {
+  width: 100vw;
+  height: fit-content;
+  position: relative;
+}
+
+.series-splash-image {
+  width: 100%;
+  height: auto;
+}
+
+.series-splash-info {
+  position: absolute;
+  z-index: 5;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.series-splash-text {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.series-splash-header {
+  font-size: 24px;
+  color: white;
+}
+
+.series-splash-description {
+  font-size: 18px;
+  color: #c0c0c0;
+}
+
+/* END series splash */
