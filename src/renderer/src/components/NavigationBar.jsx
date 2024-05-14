@@ -60,7 +60,7 @@ export default function NavigationBar() {
         </Link>
         <Link
           className={"navigation-button" + (activePage === "settings" ? " navigation-button-active" : "")}
-          to={"/upload"}
+          to={"/settings"}
           onClick={() => setActivePage("settings")}
         >
           <Settings sx={{width: "20px"}}/>

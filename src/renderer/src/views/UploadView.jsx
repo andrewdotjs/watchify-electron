@@ -6,6 +6,8 @@ import CoverDropzone from "../components/CoverDropzone.jsx";
 import VideoDropzone from "../components/VideoDropzone.jsx";
 
 export default function UploadView({ setAlert }) {
+  const [settings, setSettings ] = React.useState(JSON.parse(window.localStorage.getItem("appSettings")));
+
   const [videoFiles, setVideoFiles] = React.useState([]);
   const [coverFile, setCoverFile] = React.useState([]);
   const [showTitle, setShowTitle] = React.useState("");
@@ -26,7 +28,7 @@ export default function UploadView({ setAlert }) {
       data.append("videos", videos[i]);
     }
 
-    fetch("http://127.0.0.1/api/v1/series", {
+    fetch(`http://${settings["server-address"]}/api/v1/series`, {
       method: "POST",
       body: data,
       headers: {

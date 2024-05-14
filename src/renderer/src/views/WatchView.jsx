@@ -3,12 +3,14 @@ import { Link, useParams } from 'react-router-dom'
 import '../styles/views/WatchView.css'
 
 export default function WatchView({ setAlert }) {
+  const [settings, setSettings ] = React.useState(JSON.parse(window.localStorage.getItem("appSettings")));
+
   const [video, setVideo] = React.useState({})
   const [series, setSeries] = React.useState({})
   const { id } = useParams()
 
   React.useMemo(() => {
-    fetch(`http://127.0.0.1/api/v1/videos/${id}`, {
+    fetch(`http://${settings["server-address"]}/api/v1/videos/${id}`, {
       method: 'GET',
     })
       .then((response) => response.json())
@@ -20,7 +22,7 @@ export default function WatchView({ setAlert }) {
   React.useMemo(() => {
     if (video.id !== id) return
 
-    fetch(`http://127.0.0.1/api/v1/series/${video.series_id}`, {
+    fetch(`http://${settings["server-address"]}/api/v1/series/${video.series_id}`, {
       method: 'GET',
     })
       .then((response) => response.json())
@@ -29,7 +31,7 @@ export default function WatchView({ setAlert }) {
 
   return (
     <div className="watchview-container">
-      <video className="video-player" src={`http://127.0.0.1/api/v1/stream/${id}`} controls />
+      <video className="video-player" src={`http://${settings["server-address"]}/api/v1/stream/${id}`} controls />
       <div className="video-info">
         <div className="video-quick-info">
           <h1 className="video-title">{series.title}</h1>

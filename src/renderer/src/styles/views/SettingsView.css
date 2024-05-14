@@ -1,0 +1,41 @@
+.settings-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.setting-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 0;
+  flex-shrink: 0;
+  padding: 20px;
+}
+
+.setting-container:hover {
+  background-color: #ffffff11;
+}
+
+.setting-section {
+  font-size: 14px;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.setting-name {
+  color: #cccccc
+}
+
+.setting-description {
+  font-size: 14px;
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+.setting-input {
+  width: 200px;
+  background-color: #00000033;
+  color: #ffffff;
+  outline: none;
+  border: 1px solid #ffffff33;
+  padding: 5px;
+}

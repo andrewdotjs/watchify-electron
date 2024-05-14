@@ -7,12 +7,14 @@ import SearchBar from '../components/SearchBar.jsx';
 import { Skeleton } from '@mui/material';
 
 export default function ShowView({ setAlert }) {
+  const [settings, setSettings ] = React.useState(JSON.parse(window.localStorage.getItem("appSettings")));
+
   const [allSeries, setAllSeries] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
 
   React.useEffect(() => {
     const timeoutId = setTimeout(() => {
-      fetch('http://127.0.0.1/api/v1/series', {
+      fetch(`http://${settings["server-address"]}/api/v1/series`, {
         method: 'GET',
       })
       .then((response) => response.json())
@@ -34,7 +36,7 @@ export default function ShowView({ setAlert }) {
       setIsLoading(false);
 
       clearTimeout(timeoutId);
-    }, 5000);
+    }, settings["server-lag"]);
   }, [])
 
   return (
@@ -47,7 +49,7 @@ export default function ShowView({ setAlert }) {
           <>
             <HorizontalSeriesContainer title={<Skeleton variant="text" width={200} />}>
               {
-                [...Array(10).keys()].map(() => (
+                [...Array(15).keys()].map(() => (
                   <Skeleton variant="rectangular"
                     width={200}
                     height={300}
@@ -62,7 +64,7 @@ export default function ShowView({ setAlert }) {
             </HorizontalSeriesContainer>
             <HorizontalSeriesContainer title={<Skeleton variant="text" width={200} />}>
             {
-              [...Array(10).keys()].map(() => (
+              [...Array(15).keys()].map(() => (
                 <Skeleton variant="rectangular"
                   width={200}
                   height={300}
@@ -77,7 +79,7 @@ export default function ShowView({ setAlert }) {
             </HorizontalSeriesContainer>
             <HorizontalSeriesContainer title={<Skeleton variant="text" width={200} />}>
               {
-                [...Array(10).keys()].map(() => (
+                [...Array(15).keys()].map(() => (
                   <Skeleton variant="rectangular"
                     width={200}
                     height={300}

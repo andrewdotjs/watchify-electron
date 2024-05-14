@@ -3,18 +3,20 @@ import { useParams, Link, useLocation } from 'react-router-dom'
 import '../styles/views/SeriesView.css'
 
 export default function SeriesView({ setAlert }) {
+  const [settings, setSettings ] = React.useState(JSON.parse(window.localStorage.getItem("appSettings")));
+  
   const [allEpisodes, setAllEpisodes] = React.useState([]);
   const [series, setSeries] = React.useState({});
   const { id } = useParams();
 
   React.useMemo(() => {
-    fetch(`http://127.0.0.1/api/v1/series/${id}/episodes`, {
+    fetch(`http://${settings["server-address"]}/api/v1/series/${id}/episodes`, {
       method: 'GET',
     })
     .then((response) => response.json())
     .then((data) => setAllEpisodes(data.data))
 
-    fetch(`http://127.0.0.1/api/v1/series/${id}`, {
+    fetch(`http://${settings["server-address"]}/api/v1/series/${id}`, {
       method: 'GET',
     })
     .then((response) => response.json())

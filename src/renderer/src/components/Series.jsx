@@ -4,6 +4,8 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 function Series({ id, title, description, episode_count }) {
+  const [settings, setSettings ] = React.useState(JSON.parse(window.localStorage.getItem("appSettings")));
+
   // Expecting seriesData to contain {
   //   id: string,
   //   title: string,
@@ -15,7 +17,7 @@ function Series({ id, title, description, episode_count }) {
     <Link to={`/series/${id}`} className="series-redirect" state={{ title, description }}>
       <div className="series-cover">
         <div className="episode-blip">{episode_count}</div>
-        <img className="series-image" src={`http://127.0.0.1/api/v1/series/${id}/cover`} />
+        <img className="series-image" src={`http://${settings["server-address"]}/api/v1/series/${id}/cover`} />
         <div className="series-details">
           <p className="series-title">{title}</p>
         </div>
