@@ -33,6 +33,8 @@
   overflow-y: scroll;
   background-color: #808080;
   border-radius: 10px;
+  flex-grow: 0;
+  flex-shrink: 0;
 }
 
 .series-episode {
@@ -42,6 +44,8 @@
   padding: 3px 0px;
   text-decoration: none;
   transition: opacity 0.2s linear;
+  flex-grow: 0;
+  flex-shrink: 0;
 }
 
 .series-episode:hover {

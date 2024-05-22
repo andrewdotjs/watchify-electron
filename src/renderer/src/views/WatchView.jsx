@@ -3,7 +3,13 @@ import { Link, useParams } from 'react-router-dom'
 import '../styles/views/WatchView.css'
 
 export default function WatchView({ setAlert }) {
-  const [settings, setSettings ] = React.useState(JSON.parse(window.localStorage.getItem("appSettings")));
+  const [settings, setSettings] = React.useState({})
+
+  // Retrieve settings
+  React.useMemo(async () => {
+    const { data: fetchedSettings } = await window.electron.ipcRenderer.invoke('api-read-settings')
+    setSettings(fetchedSettings)
+  }, [])
 
   const [video, setVideo] = React.useState({})
   const [series, setSeries] = React.useState({})

@@ -1,37 +1,45 @@
 import "../styles/components/NavigationBar.css";
 
-import React from "react";
+import React from "react"
+import PropTypes from 'prop-types'
 
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"
+import { Home, Movie, Tv, Upload, Settings, BugReport, TrackChanges, Close } from "@mui/icons-material"
+import { IconButton } from '@mui/material'
 
-import { IconButton, Stack, List, ListItem, ListItemButton, colors } from "@mui/material";
-import { Search, Home, Movie, Tv, Upload, Settings, BugReport, TrackChanges } from "@mui/icons-material";
-
-export default function NavigationBar() {
-  const [series, setSeries] = React.useState([]);
-  const [activePage, setActivePage] = React.useState("home");
+function NavigationBar({ openMenu, setOpenMenu }) {
+  const [series, setSeries] = React.useState([])
+  const [activePage, setActivePage] = React.useState("home")
 
   React.useMemo(() => {
-    fetch("http://127.0.0.1/api/v1/series", {
-      method: "GET"
-    })
-    .then(response => response.json())
-    .then(seriesData => setSeries(seriesData.data));
-  }, []);
+    fetch('http://127.0.0.1/api/v1/series')
+      .then((response) => response.json())
+      .then((seriesData) => setSeries(seriesData.data))
+  }, [])
 
   return (
-    <div className="navigation-bar">
-      <div className="content-group">
-        <h3 className="navigation-icon" to={"/"}>
-          WATCHIFY_LOGO
-        </h3>
+    <div className={'navigation-bar' + (openMenu ? '' : ' navigation-bar-hide')}>
+      <div className="navigation-group">
+        <div className="navigation-bar-logo">
+          <h3 className="navigation-icon" to={"/"}>
+            WATCHIFY_LOGO
+          </h3>
+          <IconButton
+            sx={{ width: '40px', height: '40px', margin: '10px' }}
+            onClick={() => {
+              setOpenMenu(!openMenu)
+            }}
+          >
+            <Close />
+          </IconButton>
+        </div>
         <h3 className="navigation-header">Menu</h3>
         <Link
           className={"navigation-button" + (activePage === "home" ? " navigation-button-active" : "")}
           to={"/"}
           onClick={() => setActivePage("home")}
         >
-          <Home sx={{width: "20px"}}/>
+          <Home sx={{ width: '20px', height: '20px' }} />
           Home
         </Link>
         <Link
@@ -85,5 +93,12 @@ export default function NavigationBar() {
         <h3 className="navigation-app-version">Watchify v1.0</h3>
       </div>
     </div>
-  );
+  )
 }
+
+NavigationBar.propTypes = {
+  openMenu: PropTypes.bool,
+  setOpenMenu: PropTypes.func
+}
+
+export default NavigationBar

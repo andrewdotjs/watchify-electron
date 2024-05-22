@@ -1,0 +1,19 @@
+.connection-issue-panel {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  backdrop-filter: blur(5px);
+}
+
+.connection-issue-text {
+  width: 300px;
+  font-size: 14px;
+}
