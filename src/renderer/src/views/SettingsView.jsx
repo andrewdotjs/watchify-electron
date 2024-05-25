@@ -4,11 +4,13 @@ import '../styles/views/SettingsView.css'
 
 import PropTypes from 'prop-types'
 
-function SettingsView({ settingsAPI, setAlert }) {
+function SettingsView({ settingsAPI, setAlert, setActivePage }) {
   // Set values to empty.
   const [serverAddress, setServerAddress] = React.useState('')
   const [simulateServerLag, setSimulateServerLag] = React.useState(false)
   const [serverLag, setServerLag] = React.useState(0)
+
+  setActivePage('settings')
 
   React.useMemo(async () => {
     const readResult = await settingsAPI.read()
@@ -100,7 +102,8 @@ function SettingsView({ settingsAPI, setAlert }) {
 
 SettingsView.propTypes = {
   settingsAPI: PropTypes.object,
-  setAlert: PropTypes.func
+  setAlert: PropTypes.func,
+  setActivePage: PropTypes.func
 }
 
 export default SettingsView

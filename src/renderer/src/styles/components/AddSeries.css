@@ -1,0 +1,8 @@
+.add-series-container {
+  background-color: #ffffff11;
+  width: 200px;
+  aspect-ratio: 2/3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

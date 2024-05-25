@@ -1,8 +1,10 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
 import { Link, useParams } from 'react-router-dom'
 import '../styles/views/WatchView.css'
 
-export default function WatchView({ setAlert }) {
+function WatchView({ setAlert, setActivePage }) {
   const [settings, setSettings] = React.useState({})
 
   // Retrieve settings
@@ -15,10 +17,10 @@ export default function WatchView({ setAlert }) {
   const [series, setSeries] = React.useState({})
   const { id } = useParams()
 
+  setActivePage('')
+
   React.useMemo(() => {
-    fetch(`http://${settings["server-address"]}/api/v1/videos/${id}`, {
-      method: 'GET',
-    })
+    fetch(`http://${settings['server-address']}/api/v1/videos/${id}`)
       .then((response) => response.json())
       .then((responseJson) => {
         setVideo(responseJson.data)
@@ -28,16 +30,18 @@ export default function WatchView({ setAlert }) {
   React.useMemo(() => {
     if (video.id !== id) return
 
-    fetch(`http://${settings["server-address"]}/api/v1/series/${video.series_id}`, {
-      method: 'GET',
-    })
+    fetch(`http://${settings['server-address']}/api/v1/series/${video.series_id}`)
       .then((response) => response.json())
       .then((responseJson) => setSeries(responseJson.data))
   }, [video])
 
   return (
     <div className="watchview-container">
-      <video className="video-player" src={`http://${settings["server-address"]}/api/v1/stream/${id}`} controls />
+      <video
+        className="video-player"
+        src={`http://${settings['server-address']}/api/v1/stream/${id}`}
+        controls
+      />
       <div className="video-info">
         <div className="video-quick-info">
           <h1 className="video-title">{series.title}</h1>
@@ -66,3 +70,10 @@ export default function WatchView({ setAlert }) {
     </div>
   )
 }
+
+WatchView.propTypes = {
+  setAlert: PropTypes.func,
+  setActivePage: PropTypes.func
+}
+
+export default WatchView

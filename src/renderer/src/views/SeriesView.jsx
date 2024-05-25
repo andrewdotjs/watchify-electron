@@ -1,12 +1,16 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
 import { useParams, Link } from 'react-router-dom'
 import '../styles/views/SeriesView.css'
 
-export default function SeriesView({ setAlert }) {
+function SeriesView({ setAlert, setActivePage }) {
   const [settings, setSettings] = React.useState({})
   const [allEpisodes, setAllEpisodes] = React.useState([])
   const [series, setSeries] = React.useState({})
   const { id } = useParams()
+
+  setActivePage('')
 
   // Retrieve settings
   React.useMemo(async () => {
@@ -62,3 +66,10 @@ export default function SeriesView({ setAlert }) {
     </div>
   )
 }
+
+SeriesView.propTypes = {
+  setAlert: PropTypes.func,
+  setActivePage: PropTypes.func
+}
+
+export default SeriesView

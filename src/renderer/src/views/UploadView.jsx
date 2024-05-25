@@ -1,15 +1,16 @@
-import React from "react";
-import "../styles/views/UploadView.css";
+import React from 'react'
+import PropTypes from 'prop-types'
+import '../styles/views/UploadView.css'
 
 // Import components
-import { TextField, Button, List, ListItem, Divider } from "@mui/material";
-import CoverDropzone from "../components/CoverDropzone.jsx";
-import VideoDropzone from "../components/VideoDropzone.jsx";
+import { TextField, Button, List, ListItem, Divider } from '@mui/material'
+import CoverDropzone from '../components/CoverDropzone.jsx'
+import VideoDropzone from '../components/VideoDropzone.jsx'
 
 // Import utilities
 import utilities from '../utilities/index.js'
 
-function UploadView({ setAlert }) {
+function UploadView({ setAlert, setActivePage }) {
   const [settings, setSettings] = React.useState({})
 
   // Retrieve settings
@@ -23,6 +24,8 @@ function UploadView({ setAlert }) {
   const [coverFile, setCoverFile] = React.useState([])
   const [showTitle, setShowTitle] = React.useState('')
   const [showDescription, setShowDescription] = React.useState('')
+
+  setActivePage('upload')
 
   function handleShowUpload(title, description, cover, videos) {
     const data = new FormData()
@@ -68,7 +71,7 @@ function UploadView({ setAlert }) {
     <div className="upload-view">
       <Divider
         sx={{
-          marginBottom: "20px"
+          marginBottom: '20px'
         }}
       >
         Details
@@ -85,78 +88,76 @@ function UploadView({ setAlert }) {
           />
         </div>
         <div className="upload-images">
-          <CoverDropzone uploadFiles={coverFile} setUploadFiles={setCoverFile}/>
+          <CoverDropzone uploadFiles={coverFile} setUploadFiles={setCoverFile} />
         </div>
       </div>
       <Divider
         sx={{
-          marginTop: "20px",
-          marginBottom: "20px"
+          marginTop: '20px',
+          marginBottom: '20px'
         }}
       >
         Videos
       </Divider>
       <div className="upload-videos-container">
         <VideoDropzone setUploadVideos={setVideoFiles} />
-        {
-          videoFiles.length ? (
+        {videoFiles.length ? (
           <List
+            sx={{
+              backgroundColor: '#000000',
+              marginTop: '20px',
+              display: 'flex',
+              flexDirection: 'column',
+              borderRadius: '5px'
+            }}
+          >
+            <ListItem
               sx={{
-                backgroundColor: "#000000",
-                marginTop: "20px",
-                display: "flex",
-                flexDirection: "column",
-                borderRadius: "5px",
+                display: 'flex',
+                flexDirection: 'row',
+                gap: '10px'
               }}
             >
+              <p className="upload-videos-title initial">Filename</p>
+              <p className="upload-videos-title centered">Format</p>
+              <p className="upload-videos-title end">Filesize</p>
+            </ListItem>
+            {videoFiles.map((videoFile) => (
               <ListItem
+                key={videoFile.name}
+                className="upload-videos-container"
                 sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                  gap: "10px"
+                  display: 'flex',
+                  flexDirection: 'row',
+                  gap: '10px'
                 }}
               >
-                <p className="upload-videos-title initial">Filename</p>
-                <p className="upload-videos-title centered">Format</p>
-                <p className="upload-videos-title end">Filesize</p>
+                <p className="upload-videos-info initial">{videoFile.name}</p>
+                <p className="upload-videos-info centered">{videoFile.type}</p>
+                <p className="upload-videos-info end">{utilities.format.bytes(videoFile.size)}</p>
               </ListItem>
-              {
-                videoFiles.map((videoFile) => (
-                  <ListItem
-                    key={videoFile.name}
-                    className="upload-videos-container"
-                    sx={{
-                      display: "flex",
-                      flexDirection: "row",
-                      gap: "10px"
-                    }}
-                  >
-                    <p className="upload-videos-info initial">{videoFile.name}</p>
-                    <p className="upload-videos-info centered">{videoFile.type}</p>
-                    <p className="upload-videos-info end">{utilities.format.bytes(videoFile.size)}</p>
-                  </ListItem>
-                ))
-              }
-            </List>
-          )
-          :
+            ))}
+          </List>
+        ) : (
           <></>
-        }
-
+        )}
       </div>
       <Button
         variant="contained"
         onClick={() => handleShowUpload(showTitle, showDescription, coverFile, videoFiles)}
         sx={{
-          marginTop: "20px",
+          marginTop: '20px'
         }}
       >
         Upload
       </Button>
     </div>
-  );
+  )
 }
 
-UploadView.proptypes
+UploadView.propTypes = {
+  setAlert: PropTypes.func,
+  setActivePage: PropTypes.func
+}
 
 export default UploadView

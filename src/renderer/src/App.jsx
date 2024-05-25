@@ -28,6 +28,7 @@ export default function App() {
   const [settings, setSettings] = React.useState({})
   const [connIssue, setConnIssue] = React.useState(false)
   const [openMenu, setOpenMenu] = React.useState(false)
+  const [activePage, setActivePage] = React.useState('home')
   const [alert, setAlert] = React.useState({
     active: false
   })
@@ -50,7 +51,7 @@ export default function App() {
         <></>
       )}
       <HashRouter>
-        <NavigationBar openMenu={openMenu} setOpenMenu={setOpenMenu} />
+        <NavigationBar openMenu={openMenu} setOpenMenu={setOpenMenu} activePage={activePage} />
         <div className={'main-content' + (!openMenu ? ' main-content-extend' : '')}>
           {!openMenu ? (
             <IconButton
@@ -65,15 +66,33 @@ export default function App() {
             <></>
           )}
           <Routes>
-            <Route path="/watch/:id" element={<WatchView setAlert={setAlert} />} lazy={true} />
-            <Route path="/series/:id" element={<SeriesView setAlert={setAlert} />} lazy={true} />
-            <Route
-              path="/settings"
-              element={<SettingsView setAlert={setAlert} settingsAPI={settingsAPI} />}
+            <Route // Video watching page
+              path="/watch/:id"
+              element={<WatchView setAlert={setAlert} setActivePage={setActivePage} />}
               lazy={true}
             />
-            <Route path="/upload" element={<UploadView setAlert={setAlert} />} lazy={true} />
-            <Route
+            <Route // Series information page
+              path="/series/:id"
+              element={<SeriesView setAlert={setAlert} setActivePage={setActivePage} />}
+              lazy={true}
+            />
+            <Route // Settings page
+              path="/settings"
+              lazy={true}
+              element={
+                <SettingsView
+                  setAlert={setAlert}
+                  setActivePage={setActivePage}
+                  settingsAPI={settingsAPI}
+                />
+              }
+            />
+            <Route // Upload page TODO: Create different pages for series and movie uploads
+              path="/upload"
+              lazy={true}
+              element={<UploadView setAlert={setAlert} setActivePage={setActivePage} />}
+            />
+            <Route // Shows page
               path="/shows"
               lazy={true}
               element={
@@ -81,10 +100,15 @@ export default function App() {
                   setAlert={setAlert}
                   settingsAPI={settingsAPI}
                   setConnIssue={setConnIssue}
+                  setActivePage={setActivePage}
                 />
               }
             />
-            <Route path="/" element={<HomeView setAlert={setAlert} />} lazy={true} />
+            <Route // Home page
+              path="/"
+              lazy={true}
+              element={<HomeView setAlert={setAlert} setActivePage={setActivePage} />}
+            />
           </Routes>
         </div>
         <Snackbar

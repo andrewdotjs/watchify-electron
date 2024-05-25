@@ -5,13 +5,16 @@ import HorizontalSeriesContainer from '../components/HorizontalSeriesContainer.j
 
 import PropTypes from 'prop-types'
 
-import SearchBar from '../components/SearchBar.jsx'
+// import SearchBar from '../components/SearchBar.jsx'
 import { Skeleton } from '@mui/material'
+import AddSeries from '../components/AddSeries.jsx'
 
-function ShowView({ settingsAPI, setAlert, setConnIssue }) {
+function ShowView({ settingsAPI, setAlert, setConnIssue, setActivePage }) {
   const [settings, setSettings] = React.useState({})
   const [allSeries, setAllSeries] = React.useState([])
   const [isLoading, setIsLoading] = React.useState(true)
+
+  setActivePage('shows')
 
   // Retrieve settings
   React.useMemo(async () => {
@@ -118,7 +121,7 @@ function ShowView({ settingsAPI, setAlert, setConnIssue }) {
             <HorizontalSeriesContainer
               title={isLoading ? <Skeleton variant="text" width={200} /> : 'Trending'}
             >
-              {allSeries.length ? (
+              {allSeries?.length && allSeries.length !== null ? (
                 allSeries.map((series) => (
                   <Series
                     key={series.id}
@@ -129,11 +132,12 @@ function ShowView({ settingsAPI, setAlert, setConnIssue }) {
                   />
                 ))
               ) : (
-                <p>There are no series to be displayed.</p>
+                <></>
               )}
+              {!allSeries?.length || allSeries?.length < 10 ? <AddSeries /> : <></>}
             </HorizontalSeriesContainer>
             <HorizontalSeriesContainer title={'Recently Uploaded'}>
-              {allSeries.length ? (
+              {allSeries?.length && allSeries.length !== null ? (
                 allSeries.map((series) => (
                   <Series
                     key={series.id}
@@ -144,11 +148,12 @@ function ShowView({ settingsAPI, setAlert, setConnIssue }) {
                   />
                 ))
               ) : (
-                <p>There are no series to be displayed.</p>
+                <></>
               )}
+              {!allSeries?.length || allSeries?.length < 10 ? <AddSeries /> : <></>}
             </HorizontalSeriesContainer>
             <HorizontalSeriesContainer title={'Recently Updated'}>
-              {allSeries.length ? (
+              {allSeries?.length ? (
                 allSeries.map((series) => (
                   <Series
                     key={series.id}
@@ -159,8 +164,9 @@ function ShowView({ settingsAPI, setAlert, setConnIssue }) {
                   />
                 ))
               ) : (
-                <p>There are no series to be displayed.</p>
+                <></>
               )}
+              {!allSeries?.length || allSeries?.length < 10 ? <AddSeries /> : <></>}
             </HorizontalSeriesContainer>
           </>
         )}
@@ -172,7 +178,8 @@ function ShowView({ settingsAPI, setAlert, setConnIssue }) {
 ShowView.propTypes = {
   settingsAPI: PropTypes.object,
   setAlert: PropTypes.func,
-  setConnIssue: PropTypes.func
+  setConnIssue: PropTypes.func,
+  setActivePage: PropTypes.func
 }
 
 export default ShowView
