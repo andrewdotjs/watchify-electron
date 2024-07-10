@@ -1,6 +1,15 @@
 .settings-container {
+  width: 100vw;
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+
+.setting-width-control {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .setting-container {
@@ -9,9 +18,10 @@
   flex-grow: 0;
   flex-shrink: 0;
   padding: 20px;
+  width: 800px;
 }
 
-.setting-container:hover {
+.setting-width-control:hover {
   background-color: #ffffff11;
 }
 

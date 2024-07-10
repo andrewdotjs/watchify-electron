@@ -1,5 +1,33 @@
 .upload-container {
   position: relative;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+}
+
+.cover-delete-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: #000;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 
+    background-color cubic-bezier(.17,.67,.36,.88) 0.2s,
+    opacity cubic-bezier(.17,.67,.36,.88) 0.2s;
+}
+
+.cover-delete-button:hover {
+  background-color: #333;
+}
+
+.cover-delete-button:active {
+  opacity: 0.6;
 }
 
 .cover-preview-container {

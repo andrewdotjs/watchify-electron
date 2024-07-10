@@ -4,12 +4,15 @@ import './styles/main.css'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import { HashRouter, Route, Routes } from 'react-router-dom'
 
-import HomeView from './views/HomeView.jsx'
-import SeriesView from './views/SeriesView.jsx'
-import SettingsView from './views/SettingsView.jsx'
-import ShowView from './views/ShowView.jsx'
-import UploadView from './views/UploadView.jsx'
-import WatchView from './views/WatchView.jsx'
+import HomeView from './views/Home.jsx'
+import DetailsView from './views/Details.jsx'
+import MovieDetailsView from './views/MovieDetails.jsx'
+import SettingsView from './views/Settings.jsx'
+import ShowView from './views/Show.jsx'
+import MoviesView from './views/Movies.jsx'
+import UploadView from './views/Upload.jsx'
+import WatchShowView from './views/WatchShow.jsx'
+import WatchMovieView from './views/WatchMovie.jsx'
 
 import { Menu } from '@mui/icons-material'
 import { Alert, IconButton, Slide, Snackbar } from '@mui/material'
@@ -17,6 +20,7 @@ import ConnectionIssuePanel from './components/ConnectionIssuePanel.jsx'
 import NavigationBar from './components/NavigationBar.jsx'
 
 import settingsAPI from './utilities/settings.js'
+
 
 const darkTheme = createTheme({
   palette: {
@@ -53,30 +57,49 @@ export default function App() {
       <HashRouter>
         <NavigationBar openMenu={openMenu} setOpenMenu={setOpenMenu} activePage={activePage} />
         <div className={'main-content' + (!openMenu ? ' main-content-extend' : '')}>
-          {!openMenu ? (
-            <IconButton
-              sx={{ width: '40px', height: '40px', margin: '10px' }}
-              onClick={() => {
-                setOpenMenu(!openMenu)
-              }}
-            >
-              <Menu />
-            </IconButton>
-          ) : (
-            <></>
-          )}
           <Routes>
             <Route // Video watching page
-              path="/watch/:id"
-              element={<WatchView setAlert={setAlert} setActivePage={setActivePage} />}
+              path="/watch/show/:id"
               lazy={true}
+              element={
+                <WatchShowView
+                  setAlert={setAlert}
+                  setActivePage={setActivePage}
+                />
+              }
             />
-            <Route // Series information page
-              path="/series/:id"
-              element={<SeriesView setAlert={setAlert} setActivePage={setActivePage} />}
+            <Route // Video watching page
+              path="/watch/movie/:id"
               lazy={true}
+              element={
+                <WatchMovieView
+                  setAlert={setAlert}
+                  setActivePage={setActivePage}
+                />
+              }
+            />
+            <Route // Show information page
+              path="/details/show/:id"
+              lazy={true}
+              element={
+                <DetailsView
+                  setAlert={setAlert}
+                  setActivePage={setActivePage}
+                />
+              }
+            />
+            <Route // Show information page
+              path="/details/movie/:id"
+              lazy={true}
+              element={
+                <MovieDetailsView
+                  setAlert={setAlert}
+                  setActivePage={setActivePage}
+                />
+              }
             />
             <Route // Settings page
+              exact
               path="/settings"
               lazy={true}
               element={
@@ -88,9 +111,15 @@ export default function App() {
               }
             />
             <Route // Upload page TODO: Create different pages for series and movie uploads
+              exact
               path="/upload"
               lazy={true}
-              element={<UploadView setAlert={setAlert} setActivePage={setActivePage} />}
+              element={
+                <UploadView
+                  setAlert={setAlert}
+                  setActivePage={setActivePage}
+                />
+              }
             />
             <Route // Shows page
               path="/shows"
@@ -104,10 +133,29 @@ export default function App() {
                 />
               }
             />
+            <Route
+              exact
+              path="/movies"
+              lazy={true}
+              element={
+                <MoviesView
+                  setAlert={setAlert}
+                  settingsAPI={settingsAPI}
+                  setConnIssue={setConnIssue}
+                  setActivePage={setActivePage}
+                />
+              }
+            />
             <Route // Home page
+              exact
               path="/"
               lazy={true}
-              element={<HomeView setAlert={setAlert} setActivePage={setActivePage} />}
+              element={
+                <HomeView
+                  setAlert={setAlert}
+                  setActivePage={setActivePage}
+                />
+              }
             />
           </Routes>
         </div>

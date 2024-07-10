@@ -47,16 +47,11 @@
 /* BEGIN search results */
 
 .search-results {
-  position: absolute;
   backdrop-filter: blur(3px);
   background-color: rgba(25, 30, 42, 0.9);
   backdrop-filter: blur(8px);
-  height: 250px;
+  height: 100%;
   width: 100%;
-  max-width: 100%;
-  top: 60px;
-  left: 0;
-  z-index: 20;
   overflow-y: scroll;
   overflow-x: hidden;
   border-radius: 5px;
@@ -65,6 +60,10 @@
 
 .search-results-hidden {
   height: 0px;
+}
+
+.search-result {
+  height: 200px;
 }
 
 .search-results-info {
@@ -98,7 +97,7 @@
 }
 
 .search-results-cover {
-  width: 65px;
+  width: 30px;
   height: auto;
   border-radius: 5px;
   margin-left: auto;

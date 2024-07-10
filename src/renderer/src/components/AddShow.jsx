@@ -1,11 +1,11 @@
-import '../styles/components/AddSeries.css'
+import '../styles/components/AddShow.css'
 import React from 'react'
 
 import { AddCircle } from '@mui/icons-material'
 
-function AddSeries() {
+function AddShow() {
   return (
-    <a href={'#/upload'} className="add-series-container">
+    <a href={'#/upload'} className="add-show-container">
       <AddCircle
         sx={{
           width: '100px',
@@ -18,4 +18,4 @@ function AddSeries() {
   )
 }
 
-export default AddSeries
+export default AddShow

@@ -1,4 +1,4 @@
-.series-information-container {
+.movie-information-container {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -16,14 +16,14 @@
   border-radius: 10px;
 }
 
-.series-information {
+.movie-information {
   display: flex;
   flex-direction: column;
   height: 300px;
   width: 500px;
 }
 
-.series-episodes-container {
+.movie-episodes-container {
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -37,7 +37,7 @@
   flex-shrink: 0;
 }
 
-.series-episode {
+.movie-episode {
   width: 100%;
   text-align: center;
   color: white;
@@ -48,21 +48,55 @@
   flex-shrink: 0;
 }
 
-.series-episode:hover {
+.movie-episode:hover {
   opacity: 0.8;
 }
 
-.series-episode:nth-of-type(2n + 1) {
+.movie-episode:nth-of-type(2n + 1) {
   background-color: #6c66cc;
 }
 
-.series-episode:nth-of-type(2n) {
+.movie-episode:nth-of-type(2n) {
   background-color: #4740bf;
 }
 
-.series-view-cover {
+.movie-cover-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.movie-view-cover {
   overflow: hidden;
+  width: 200px;
   height: 300px;
-  aspect-ratio: 2/3;
+  width: fit-content;
   border-radius: 10px;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.watch-movie-redirect {
+  width: calc(100% - 10px);
+  padding: 5px;
+  border-radius: 5px;
+
+  flex-grow: 0;
+  flex-shrink: 0;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+
+  background-color: #ffffff11;
+  color: #fff;
+
+  text-align: center;
+  text-decoration: none;
+}
+
+.watch-movie-redirect:hover {
+  background-color: #ffffff22;
 }

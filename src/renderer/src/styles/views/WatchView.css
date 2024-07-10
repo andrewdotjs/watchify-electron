@@ -7,8 +7,9 @@
 }
 
 .video-player {
-  width: auto;
-  height: 800px;
+  width: 1000px;
+  height: 600px;
+  margin: auto;
   background-color: #000000;
 }
 
@@ -17,8 +18,15 @@
   padding: 0;
 }
 
+.video-episode {
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
+}
+
 .video-description {
   font-size: 16px;
+  opacity: 0.6;
 }
 
 .video-info {
@@ -41,9 +49,12 @@
 }
 
 .video-navigation-buttons {
-  width: fit-content;
-  height: fit-content;
-  padding: 5px 10px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   border-radius: 5px;
   text-decoration: none;
   color: #fff;

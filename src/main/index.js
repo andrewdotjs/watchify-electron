@@ -8,10 +8,10 @@ import settings from './utilities/settings.js'
 function createWindow() {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 1100,
-    minWidth: 1100,
-    height: 700,
-    minHeight: 700,
+    width: 1200,
+    minWidth: 800,
+    height: 800,
+    minHeight: 600,
     show: false,
     title: 'Watchify',
     autoHideMenuBar: true,

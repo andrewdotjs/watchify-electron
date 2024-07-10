@@ -47,19 +47,13 @@ export default function CoverDropzone({ uploadFiles, setUploadFiles}) {
           }
         </div>
       </div>
-      <IconButton
+      <a
         onClick={() => setUploadFiles([])}
         variant="filled"
-        color="error"
-        size="small"
-        sx={{
-          position: "absolute",
-          top: "5px",
-          right: "5px",
-        }}
+        className="cover-delete-button"
       >
         <Delete />
-      </IconButton>
+      </a>
     </div>
   );
 }

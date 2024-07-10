@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { useParams, Link } from 'react-router-dom'
 import '../styles/views/SeriesView.css'
 
-function SeriesView({ setAlert, setActivePage }) {
+function DetailsView({ setAlert, setActivePage }) {
   const [settings, setSettings] = React.useState({})
   const [allEpisodes, setAllEpisodes] = React.useState([])
   const [series, setSeries] = React.useState({})
@@ -44,19 +44,17 @@ function SeriesView({ setAlert, setActivePage }) {
     }
   }, [settings])
 
-  console.log(allEpisodes)
-
   return (
     <div className="series-information-container">
       <div className="series-information">
         <h2>{series.title}</h2>
         <p>{series.description}</p>
       </div>
-      <div className="series-episodes">
-        {allEpisodes.length ? (
+      <div className="series-episodes-container">
+        {allEpisodes?.length > 0 ? (
           allEpisodes.map((episode) => (
-            <Link className="series-episode" key={episode.id} to={`/watch/${episode.id}`}>
-              {episode.episode_number}
+            <Link className="series-episode" key={episode?.id} to={`/watch/show/${episode?.id}`}>
+              Episode {episode['episode_number']}
             </Link>
           ))
         ) : (
@@ -67,9 +65,9 @@ function SeriesView({ setAlert, setActivePage }) {
   )
 }
 
-SeriesView.propTypes = {
+DetailsView.propTypes = {
   setAlert: PropTypes.func,
   setActivePage: PropTypes.func
 }
 
-export default SeriesView
+export default DetailsView

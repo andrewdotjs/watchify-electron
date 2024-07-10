@@ -1,6 +1,7 @@
-.add-series-container {
+.add-show-container {
   background-color: #ffffff11;
   width: 200px;
+  height: 300px;
   aspect-ratio: 2/3;
   display: flex;
   justify-content: center;
