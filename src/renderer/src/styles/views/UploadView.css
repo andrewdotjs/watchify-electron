@@ -3,7 +3,7 @@
 }
 
 .upload-view {
-  width: calc(1000px - 40px);
+  width: calc(100vw - 290px);
   height: calc(100% - 40px);
   margin: 20px auto;
 }

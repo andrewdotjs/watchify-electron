@@ -13,6 +13,7 @@ import MoviesView from './views/Movies.jsx'
 import UploadView from './views/Upload.jsx'
 import WatchShowView from './views/WatchShow.jsx'
 import WatchMovieView from './views/WatchMovie.jsx'
+import EmptyView from './views/Empty.jsx'
 
 import { Menu } from '@mui/icons-material'
 import { Alert, IconButton, Slide, Snackbar } from '@mui/material'
@@ -31,6 +32,7 @@ const darkTheme = createTheme({
 export default function App() {
   const [settings, setSettings] = React.useState({})
   const [connIssue, setConnIssue] = React.useState(false)
+  const [noContent, setNoContent] = React.useState(false)
   const [openMenu, setOpenMenu] = React.useState(false)
   const [activePage, setActivePage] = React.useState('home')
   const [alert, setAlert] = React.useState({
@@ -56,7 +58,7 @@ export default function App() {
       )}
       <HashRouter>
         <NavigationBar openMenu={openMenu} setOpenMenu={setOpenMenu} activePage={activePage} />
-        <div className={'main-content' + (!openMenu ? ' main-content-extend' : '')}>
+        <div className={'main-content'}>
           <Routes>
             <Route // Video watching page
               path="/watch/show/:id"
@@ -123,6 +125,19 @@ export default function App() {
             />
             <Route // Shows page
               path="/shows"
+              lazy={true}
+              element={
+                <ShowView
+                  setAlert={setAlert}
+                  settingsAPI={settingsAPI}
+                  setConnIssue={setConnIssue}
+                  setActivePage={setActivePage}
+                  setNoContent={setNoContent}
+                />
+              }
+            />
+            <Route // Shows page
+              path="/search"
               lazy={true}
               element={
                 <ShowView

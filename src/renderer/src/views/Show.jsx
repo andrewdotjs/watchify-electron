@@ -22,8 +22,6 @@ function ShowView({ settingsAPI, setAlert, setConnIssue, setActivePage }) {
   setActivePage('shows')
 
   React.useEffect(() => {
-    console.log(contentId)
-
     if (contentId === '') {
       setOpenDetails(false)
     } else {
@@ -39,7 +37,7 @@ function ShowView({ settingsAPI, setAlert, setConnIssue, setActivePage }) {
 
   React.useMemo(async () => {
     if (Object.keys(settings).length !== 0) {
-      let errorOcurred = false;
+      let errorOcurred = false
 
       if (settings['simulate-server-lag']) {
         await new Promise((r) => setTimeout(r, settings['server-lag-simulation-time']))
@@ -53,6 +51,7 @@ function ShowView({ settingsAPI, setAlert, setConnIssue, setActivePage }) {
           if (data?.status === 200) {
             setAllShows(data.data)
           } else {
+            errorOcurred = true
             setAlert({
               active: true,
               severity: 'error',
@@ -62,6 +61,7 @@ function ShowView({ settingsAPI, setAlert, setConnIssue, setActivePage }) {
         })
         .catch((error) => {
           setConnIssue(true)
+          errorOcurred = true
           setAlert({
             active: true,
             severity: 'error',
@@ -77,6 +77,7 @@ function ShowView({ settingsAPI, setAlert, setConnIssue, setActivePage }) {
           if (data?.status === 200) {
             setRecentlyUploadedShows(data.data)
           } else {
+            errorOcurred = true
             setAlert({
               active: true,
               severity: 'error',
@@ -86,6 +87,7 @@ function ShowView({ settingsAPI, setAlert, setConnIssue, setActivePage }) {
         })
         .catch((error) => {
           setConnIssue(true)
+          errorOcurred = true
           setAlert({
             active: true,
             severity: 'error',
@@ -93,7 +95,11 @@ function ShowView({ settingsAPI, setAlert, setConnIssue, setActivePage }) {
           })
         })
 
-      setIsLoading(false)
+      console.log(errorOcurred)
+
+      if (!errorOcurred) {
+        setIsLoading(false)
+      }
     }
   }, [settings])
 

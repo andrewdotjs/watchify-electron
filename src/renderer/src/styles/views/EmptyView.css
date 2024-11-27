@@ -1,0 +1,11 @@
+.empty-view {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.empty-icon {
+  width: 100px;
+  height: 100px;
+}

@@ -1,5 +1,6 @@
 .dropzone {
-  width: 100%;
+  width: calc(90%);
+  margin-left: 0;
   height: 240px;
   display: flex;
   flex-direction: column;

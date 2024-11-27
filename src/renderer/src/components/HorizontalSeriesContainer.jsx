@@ -15,32 +15,31 @@ function HorizontalSeriesContainer({ children, title, loading }) {
     <div className="horizontal-series-container">
       <div className="horizontal-content-slider-title-container">
         <h2 className="horizontal-series-slider-title">
-          {!loading ? title : (
-            <Skeleton
-              variant="text"
+          {loading ? (
+              <Skeleton
+                variant="text"
                 sx={{
-                width: 120,
-                borderRadius: 0
-              }}
-            />
-        )}
+                  width: 120,
+                  borderRadius: 0
+                }}
+              />
+            ) : title}
         </h2>
-        {
-          !loading ? (
+        {loading ? (
+            <Skeleton variant="text" sx={{
+              width: 100,
+              borderRadius: 0,
+              marginLeft: 'auto',
+              marginRight: '7px'
+            }}/>
+          ) : (
             <a className="horizontal-content-slider-redirect">
               See More <ArrowForward sx={{
                 'height': 18,
                 'width': 18
               }} />
            </a>
-          ) : (
-            <Skeleton variant="text" sx={{
-              width: 100,
-              marginLeft: 'auto',
-              marginRight: '7px'
-            }}/>
-          )
-        }
+          )}
       </div>
       <div className={"horizontal-series-slider " + (loading ? 'horizontal-series-slider-loading' : '')}>
         {
@@ -66,7 +65,7 @@ function HorizontalSeriesContainer({ children, title, loading }) {
           )
         }
         {
-          !loading && children?.props?.children?.length < 15 ? (
+          !loading && children?.props?.children?.length < 15 || !loading && children?.props?.children?.length === undefined ? (
             <AddShow />
           ) : (
             <></>

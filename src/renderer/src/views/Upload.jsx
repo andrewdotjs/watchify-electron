@@ -46,7 +46,7 @@ function UploadView({ setAlert, setActivePage }) {
       data.append('videos', videos[i])
     }
 
-    fetch(`http://${settings['server-address']}/api/v1/series`, {
+    fetch(`http://${settings['server-address']}/api/v1/${contentType === 'show' ? 'series' : 'movies'}`, {
       method: 'POST',
       body: data,
       headers: {
